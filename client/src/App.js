@@ -2,7 +2,8 @@
 import './App.css';
 import Header from './components/Header';
 import Main from './components/Main';
-import SimpleMap from './components/SimpleMap';
+
+import SearchBox from './components/SearchBox';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Header />
       
       <Main />
+      <SearchBox />
     </div>
   );
 }

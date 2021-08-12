@@ -4,16 +4,16 @@ import Options from './Options';
 import SimpleMap from './SimpleMap';
 import TableComponent from './Table';
 
-const API = 'AIzaSyC9DQpoXnuGd6mWgnxP2YfLojwLvEZ9wEY'
 
 
 const Main = () =>{
 
     const [events,SetEvents] = useState()
     const [place, setPlace] = useState("New York");
-
     
-    
+    useEffect(()=>{
+        console.log(place, "place from main")
+    },[place])
 
     return(
 
@@ -21,7 +21,7 @@ const Main = () =>{
         <div className="container"> 
             <div className="row input-row">
                 <div className="col-6">
-                    <Options />
+                    <Options place={place} setPlace={setPlace}/>
                 </div>
 
             </div>
