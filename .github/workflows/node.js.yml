@@ -35,6 +35,7 @@ jobs:
   deploy:
     needs: [test]
     runs-on: ubuntu-latest
+    environment: prod_env
 
     steps:
     - name: SSH to ubunut server and deploy node app
