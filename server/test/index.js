@@ -8,13 +8,3 @@ describe("GET /", () => {
   })
 });
 
-
-
-describe('db connection', function(){
-    
-         it('responds with succesful connection', (done)=>{
-
-            request(app).get("/data").expect("",done);
-            
-         });
- });
