@@ -47,6 +47,7 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         script: |
           cd ./nearby-dashboard
+          git stash
           git pull origin master
           cd ./server
           npm install
