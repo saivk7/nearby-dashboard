@@ -8,6 +8,20 @@ import { Loader } from '@googlemaps/js-api-loader';
 
 
 export default function SimpleMap({placeId,events}){
+
+
+  const [chng,setChng] = useState(0)
+
+  const [center,setCenter] = useState({
+    lat: 40.730610,
+    lng: 	-73.935242
+  });
+  
+
+  const [zoom,setZoom] = useState(11);
+  const [apiLoaded, setApiLoaded] = useState(false);
+  const [map, setMap] = useState();
+  const [maps, setMaps] = useState();
   
   
   useEffect(()=>{
@@ -16,33 +30,39 @@ export default function SimpleMap({placeId,events}){
       let url =  `http://159.65.39.80/google?placeId=${placeId}`;
       let config = {};
       
+      if(placeId){
       try{
+        
+        const res = await fetch(url);
+        console.log("center [before] is " ,center)
+        if(res.ok){
+          const {data} = await res.json()
+          console.log(data)
+          
+          setCenter((center)=>{
+            center.lat = data.lat;
+            center.lng = data.lng;
+            return center
+          })
+          console.log("center is " ,center)
 
-        const response = await fetch(url);
-        console.log("res from fetch lat lon, " , );
-      }
-      catch(e){
-        console.log("error from fetch lat lon ", e)
+        }
+      }catch(e){
+        console.log("error fetching lat lon", e.message)
       }
       
+      setChng(chng=>chng+1)
+
       
 
-    }
+    }}
 
     fetchLatLon(placeId)
 
-  },[placeId])
+  },[placeId,center,chng])
 
 
-  const [center,setCenter] = useState({
-    lat: 40.730610,
-    lng: 	-73.935242
-  });
-
-  const [zoom,setZoom] = useState(11);
-  const [apiLoaded, setApiLoaded] = useState(false);
-  const [map, setMap] = useState();
-  const [maps, setMaps] = useState();
+  
 
   const handleApiLoaded = ({map,maps}) =>{
     setApiLoaded(true);
@@ -61,8 +81,8 @@ export default function SimpleMap({placeId,events}){
         defaultZoom={zoom}
       >
         <Marker
-          lat={ 40.730610}
-          lng={-73.935242}
+          lat={center.lat}
+          lng={center.lng}
           text="My Marker"
         />
 
