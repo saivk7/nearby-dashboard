@@ -9,6 +9,10 @@ require('dotenv').config();
 /* GET google query of lat and lon. */
 router.get('/', async function(req, res, next) {
 
+    if(req.body.placeId==null){
+        res.send("Hello from google endpoint")
+    }
+
     const client = new Client({});
     try{
         
