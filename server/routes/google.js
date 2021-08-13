@@ -22,7 +22,7 @@ router.get('/', async function(req, res, next) {
         })
         
         console.log("the response from api client is ", response.data.result.geometry.location);
-        res.send(JSON.stringify(response.data.result.geometry.location))
+        res.send(JSON.stringify({data: response.data.result.geometry.location}))
 
     }catch(e){
         
