@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import GoogleMaps from './SearchBox';
 
 const Options = ({place,setPlace,results,setResults,range,setRange}) => {
-
+  
+  const [placeId, setPlaceId] = useState(place)
   const handleSubmit=(e)=>{
     e.preventDefault()
     console.log("submit called" ,e)
     setResults(e.target.resultsSelect.value)
     setRange(e.target.rangeSelect.value)
+    setPlace(placeId)
   }
   return (
 
@@ -16,7 +18,7 @@ const Options = ({place,setPlace,results,setResults,range,setRange}) => {
       <FormGroup row>
         <Label for="placeName" sm={3}></Label>
         <Col sm={4}>
-          <GoogleMaps place={place} setPlace={setPlace} />
+          <GoogleMaps place={placeId} setPlace={setPlaceId} />
           
         </Col>
       </FormGroup>

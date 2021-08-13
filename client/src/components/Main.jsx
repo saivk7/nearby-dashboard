@@ -12,11 +12,52 @@ const Main = () =>{
     const [place, setPlace] = useState("New York");
     const [range,setRange] = useState(100)
     const [results,setResults] = useState(10)
+    const [chng,setChng] = useState(0)
+
+    const [center,setCenter] = useState({
+        lat: 40.730610,
+        lng: 	-73.935242
+    });
     
     useEffect(()=>{
-        console.log(place, "place from main")
+        /* console.log(place, "place from main")
         console.log(range,"range changed")
-        console.log(results,"results changed")
+        console.log(results,"results changed") */
+
+        async function fetchLatLon(place) {
+      
+            let url =  `http://159.65.39.80/google?placeId=${place}`;
+            let config = {};
+            
+            if(place){
+            try{
+              
+              const res = await fetch(url);
+              console.log("center [before] is " ,center)
+              if(res.ok){
+                const {data} = await res.json()
+                console.log(data)
+                
+                setCenter((center)=>{
+                  center.lat = data.lat;
+                  center.lng = data.lng;
+                  return center
+                })
+
+                setRange(10)
+                setResults(10)
+                console.log("center is " ,center)
+      
+      
+              }
+            }catch(e){
+              console.log("error fetching lat lon", e.message)
+            }
+      
+          }}
+      
+          fetchLatLon(place)
+          
 
 
     },[place,range,results])
@@ -37,7 +78,7 @@ const Main = () =>{
                     <TableComponent />
                 </div>
                 <div className="col col-6 ">
-                    <SimpleMap placeId={place} events={events} />
+                    <SimpleMap center={center} events={events} />
                 </div>
             </div>
             
