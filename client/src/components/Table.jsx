@@ -7,7 +7,7 @@ const TableComponent = (props) => {
       <thead>
         <tr>
           <th>#</th>
-          <th>Group Name</th>
+          <th>Event Name</th>
           <th>Date</th>
           <th>Location</th>
           <th> People going</th>

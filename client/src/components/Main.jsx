@@ -10,18 +10,24 @@ const Main = () =>{
 
     const [events,SetEvents] = useState()
     const [place, setPlace] = useState("New York");
+    const [range,setRange] = useState(100)
+    const [results,setResults] = useState(10)
     
     useEffect(()=>{
         console.log(place, "place from main")
-    },[place])
+        console.log(range,"range changed")
+        console.log(results,"results changed")
+
+
+    },[place,range,results])
 
     return(
 
 
         <div className="container"> 
             <div className="row input-row">
-                <div className="col-6">
-                    <Options place={place} setPlace={setPlace}/>
+                <div className="col">
+                    <Options place={place} setPlace={setPlace} range={range} results={results} setRange={setRange} setResults = {setResults}/>
                 </div>
 
             </div>
@@ -31,7 +37,7 @@ const Main = () =>{
                     <TableComponent />
                 </div>
                 <div className="col col-6 ">
-                    <SimpleMap/>
+                    <SimpleMap placeId={place} events={events} />
                 </div>
             </div>
             
