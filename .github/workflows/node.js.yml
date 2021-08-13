@@ -50,4 +50,7 @@ jobs:
           git pull origin master
           cd ./server
           npm install
-          pm2 restart www
+          cp ~/.env ./
+          pm2 stop www
+          pm2 delete www
+          pm2 start ./bin/www
