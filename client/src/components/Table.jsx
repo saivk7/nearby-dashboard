@@ -1,7 +1,11 @@
-import React from 'react';
-import { Table } from 'reactstrap';
+import React, { useEffect } from 'react';
+import { Row, Table } from 'reactstrap';
 
-const TableComponent = (props) => {
+const TableComponent = ({ tableRows }) => {
+
+  useEffect(()=>{
+    console.log("render of talbe componenet" , tableRows.length)
+  })
   return (
     <Table hover responsive>
       <thead>
@@ -13,7 +17,31 @@ const TableComponent = (props) => {
           <th>Group</th>
         </tr>
       </thead>
-      <tbody>
+      {
+        tableRows &&
+        <tbody>
+          {
+
+          tableRows.map((row,i) => {
+
+            return (
+              <tr key={'row_'+i}>
+                <th scope="row">{i+1}</th>
+                <td>{row.event_name} </td>
+                <td>{row.event_time}</td>
+                <td>{row.event_url}</td>
+                <td>{row.group_city}</td>
+          
+              </tr>
+            )
+
+            
+          })
+        }
+        </tbody>
+        
+      }
+      {/* <tbody>
         <tr>
           <th scope="row">1</th>
           <td>Mark </td>
@@ -36,7 +64,7 @@ const TableComponent = (props) => {
           <td>@twitter</td>
           <td>1</td>
         </tr>
-      </tbody>
+      </tbody> */}
     </Table>
   );
 }

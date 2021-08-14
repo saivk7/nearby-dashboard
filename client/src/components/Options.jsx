@@ -5,6 +5,7 @@ import GoogleMaps from './SearchBox';
 const Options = ({place,setPlace,results,setResults,range,setRange}) => {
   
   const [placeId, setPlaceId] = useState(place)
+  
   const handleSubmit=(e)=>{
     e.preventDefault()
     console.log("submit called" ,e)
@@ -31,7 +32,7 @@ const Options = ({place,setPlace,results,setResults,range,setRange}) => {
             <option>10</option>
             <option>25</option>
             <option>50</option>
-            <option>10</option>
+            <option>100</option>
             <option>200</option>
           </Input>
         </Col>

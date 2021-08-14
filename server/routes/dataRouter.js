@@ -9,7 +9,7 @@ require('dotenv').config();
 router.post('/', async function(req, res, next) {
 
     try{
-        console.log("query is" , req.body.query )
+        
         const response = await db.query(req.body.query)
         
         res.status(200).send(JSON.stringify(response))

@@ -84,10 +84,14 @@ export default function GoogleMaps({place,setPlace}) {
         }
 
         setOptions(newOptions);
+        console.log("value from search ",value)
+        if(value) setPlace(()=> {
+          console.log("set Place Id is called")
+          return value.place_id
+         })
       }
 
-      console.log("value from search ",value)
-      if(value) setPlace(value.place_id)
+      
     });
 
     return () => {

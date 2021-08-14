@@ -1,15 +1,25 @@
-const fetch = require('node-fetch')
+import React from 'react';
 
-const requestFunc = async ()=>{
+export const requestFunc = async (center,range,limit) =>{
+    /* 
 
+    Given a center, this asunc function fetches and returns the list of events around
+    the center withing the specified radius 
+
+    */
+    // REF : https://www.movable-type.co.uk/scripts/latlong-db.html
+
+    
+    if(!center) return null;
+    
     const R = 6371e3; // earth's mean radius in metres
     const sin = Math.sin, cos=Math.cos, acos = Math.acos;
     const π = Math.PI;
 
-
-    const lat = 40.730610;    // or e.g. req.query.lat (degrees)
-    const lon = -73.935242;    // or e.g. req.query.lon (degrees)
-    const radius = 50000; // or e.g. req.query.radius; (metres)
+    const lat = center.lat;    // or e.g. req.query.lat (degrees)
+    const lon = center.lng;    // or e.g. req.query.lon (degrees)
+    const radius = Number.parseInt(range)* 1609.34; // or e.g. req.query.radius; (metres)
+    const limit_no = limit
 
     // query points within first-cut bounding box (Lat & Lon should be indexed for fast query)
 
@@ -20,28 +30,31 @@ const requestFunc = async ()=>{
 
 
     const URL = 'http://159.65.39.80/data'
-    const sql = `
-        Select *
-        FROM meetup_table
-        WHERE lat Between ${minLat} AND ${maxLat} AND lon between ${minLon} And ${maxLon}`
+    const sql = `SELECT * FROM meetup_table WHERE (lat BETWEEN ${minLat} AND ${maxLat}) AND (lon BETWEEN ${minLon} AND ${maxLon}) LIMIT ${limit_no}`
 
-    console.log("the formed sql is ", sql)
+    console.log("the formed sql is ", sql, "range", radius)
 
     const resp = await fetch(URL,{
-        method:'GET',
+        method:'POST',
         headers: {
             'Content-Type': 'application/json'
             // 'Content-Type': 'application/x-www-form-urlencoded',
         },
 
-        body: {"query":sql}
+        body: JSON.stringify({"query":sql})
 
     })
+    const respBody = await resp.json()
+    
+    const resultRows = respBody.rows;
+    
+    console.log("resultRows" , resultRows)
 
-    console.log("response from URL ", resp)
+    return resultRows;
+    
+    
 }
 
-requestFunc()
 /* 
 const [ pointsBoundingBox ] = await fetch(sql, params);
 

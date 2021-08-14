@@ -4,16 +4,15 @@ import Options from './Options';
 import SimpleMap from './SimpleMap';
 import TableComponent from './Table';
 
-
+import { requestFunc } from './helper';
 
 
 const Main = () =>{
 
-    const [events,SetEvents] = useState()
-    const [place, setPlace] = useState("New York");
-    const [range,setRange] = useState(100)
+    const [events,SetEvents] = useState([])
+    const [place, setPlace] = useState("ChIJOwg_06VPwokRYv534QaPC8g");
+    const [range,setRange] = useState(25)
     const [results,setResults] = useState(10)
-    const [chng,setChng] = useState(0)
 
     const [center,setCenter] = useState({
         lat: 40.730610,
@@ -24,7 +23,7 @@ const Main = () =>{
         /* console.log(place, "place from main")
         console.log(range,"range changed")
         console.log(results,"results changed") */
-
+        console.log("main render")
         async function fetchLatLon(place) {
       
             let url =  `http://159.65.39.80/google?placeId=${place}`;
@@ -37,19 +36,19 @@ const Main = () =>{
               console.log("center [before] is " ,center)
               if(res.ok){
                 const {data} = await res.json()
-                console.log(data)
+                console.log("data for lat lng from api", data)
                 
                 setCenter((center)=>{
-                  center.lat = data.lat;
-                  center.lng = data.lng;
-                  return center
+                    center.lat = data.lat
+                    center.lng = data.lng
+                    return {...center}
                 })
 
-                setRange(10)
-                setResults(10)
-                console.log("center is " ,center)
-      
-      
+                
+                console.log("center [after] is " ,center, "range", range, "results" ,results)
+                console.log("calling database for results rows")
+                const tableRows = await requestFunc(center,range,results) //replace with range after wards
+                SetEvents(tableRows)
               }
             }catch(e){
               console.log("error fetching lat lon", e.message)
@@ -57,14 +56,11 @@ const Main = () =>{
       
           }}
       
-          fetchLatLon(place)
-          
-
+        fetchLatLon(place)
 
     },[place,range,results])
 
 
-    
 
     return(
 
@@ -79,11 +75,11 @@ const Main = () =>{
 
             <div className="row table " >
                 <div className="col col-lg-5 col-sm-12" style={{border:"1px solid black"}}> 
-                    <TableComponent />
+                    <TableComponent tableRows={events} />
                 </div>
 
                 <div className="col col-lg-7 col-sm-12 ">
-                    <SimpleMap center={center} events={events} />
+                    <SimpleMap forKey={center.lat+ ' ' + center.lng} events={events} center={center} events={events} />
                 </div>
             </div>
             
