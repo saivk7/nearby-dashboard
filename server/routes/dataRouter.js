@@ -6,7 +6,7 @@ const db = require('../db')
 require('dotenv').config();
 // pools will use environment variables for connection information
 
-router.get('/', async function(req, res, next) {
+router.post('/', async function(req, res, next) {
 
     try{
         console.log("query is" , req.body.query )
