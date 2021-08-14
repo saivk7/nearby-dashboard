@@ -13,7 +13,7 @@ export default function SimpleMap({events,center}){
   
   return (
     // Important! Always set the container height explicitly
-    <div style={{ height: '50vh', width: '100%' }}>
+    <div style={{ height: '40rem', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyDbx9gdXfYNG7Fsjbl7fT1hEQhALgaBiJg" ,libraries:'places'}}
         center={{lat:center.lat,lng:center.lng}}

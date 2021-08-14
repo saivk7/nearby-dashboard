@@ -2,12 +2,24 @@
     width: 30px;
     height: 30px;
     border-radius: 50% 50% 50% 0;
-    background: #0038ee;
+    background: #2b558b;
     position: absolute;
     transform: rotate(-45deg);
     left: 50%;
     top: 50%;
     margin: -20px 0 0 -20px;
+  }
+  .pin:hover{
+    width: 30px;
+    height: 30px;
+    border-radius: 50% 50% 50% 0;
+    background: #d13535;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -20px 0 0 -20px;
+
   }
   .pin:after {
     content: "";

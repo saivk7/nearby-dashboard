@@ -10,9 +10,7 @@ const TableComponent = (props) => {
           <th>Event Name</th>
           <th>Date</th>
           <th>Location</th>
-          <th> People going</th>
-          <th> State</th>
-          <th> URL</th>
+          <th>Group</th>
         </tr>
       </thead>
       <tbody>
@@ -22,20 +20,21 @@ const TableComponent = (props) => {
           <td>Otto</td>
           <td>@mdo</td>
           <td>1</td>
-          <td>California</td>
-          <td>http://localhost:3000</td>
+          
         </tr>
         <tr>
           <th scope="row">2</th>
           <td>Jacob</td>
           <td>Thornton</td>
           <td>oot</td>
+          <td>1</td>
         </tr>
         <tr>
           <th scope="row">3</th>
           <td>Larry</td>
           <td>the Bird</td>
           <td>@twitter</td>
+          <td>1</td>
         </tr>
       </tbody>
     </Table>

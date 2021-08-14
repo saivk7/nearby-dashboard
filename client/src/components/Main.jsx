@@ -6,6 +6,7 @@ import TableComponent from './Table';
 
 
 
+
 const Main = () =>{
 
     const [events,SetEvents] = useState()
@@ -73,11 +74,12 @@ const Main = () =>{
 
             </div>
 
-            <div className="row table row">
-                <div className="col col-6"> 
+            <div className="row table " >
+                <div className="col col-lg-5 col-sm-12" style={{border:"1px solid black"}}> 
                     <TableComponent />
                 </div>
-                <div className="col col-6 ">
+
+                <div className="col col-lg-7 col-sm-12 ">
                     <SimpleMap center={center} events={events} />
                 </div>
             </div>
