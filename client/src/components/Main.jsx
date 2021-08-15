@@ -1,5 +1,5 @@
 import googleMapReact from 'google-map-react';
-import React, { useEffect, useRef, useState,componentDidMount } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Options from './Options';
 import SimpleMap from './SimpleMap';
 import TableComponent from './Table';
@@ -11,8 +11,8 @@ const Main = () =>{
 
     const [events,SetEvents] = useState([])
     const [place, setPlace] = useState("ChIJOwg_06VPwokRYv534QaPC8g");
-    const [range,setRange] = useState(25)
-    const [results,setResults] = useState(10)
+    const [range,setRange] = useState(10)
+    const [results,setResults] = useState(5)
 
     const [center,setCenter] = useState({
         lat: 40.730610,
@@ -74,12 +74,17 @@ const Main = () =>{
             </div>
 
             <div className="row table " >
-                <div className="col col-lg-5 col-sm-12" style={{border:"1px solid black"}}> 
-                    <TableComponent tableRows={events} />
+                
+
+                <div className="col col-12 col-sm-12 ">
+                    <SimpleMap forKey={center.lat+ ' ' + center.lng + 'range'+range} events={events} center={center} range={range } />
                 </div>
 
-                <div className="col col-lg-7 col-sm-12 ">
-                    <SimpleMap forKey={center.lat+ ' ' + center.lng} events={events} center={center} events={events} />
+                
+                <br></br>
+                <hr></hr>
+                <div className="col col-12 col-sm-12"> 
+                        <TableComponent tableRows={events} />
                 </div>
             </div>
             

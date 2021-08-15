@@ -1,5 +1,21 @@
 import React, { useEffect } from 'react';
 import { Row, Table } from 'reactstrap';
+import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText } from 'reactstrap';
+import './table.css'
+const DetailComp = ({row}) => {
+
+  return(
+    <Card >
+        <CardHeader tag="h7" style={{ color:"white", backgroundColor: '#3f80d4', borderColor: '#99c2f5' }}>{row.group_name}</CardHeader>
+        <CardBody className="card-body">
+          <CardTitle className="title" > {new Date(Number.parseInt(row.event_time)).toLocaleDateString()} @ {new Date(Number.parseInt(row.event_time)).toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})} </CardTitle>
+          <CardText className="card-text" >{row.event_name}</CardText>
+          <Button href={row.event_url} target="_blank"color="primary"  >RSVP here!</Button>
+        </CardBody>
+        
+    </Card>
+  )
+}
 
 const TableComponent = ({ tableRows }) => {
 
@@ -7,35 +23,25 @@ const TableComponent = ({ tableRows }) => {
     console.log("render of talbe componenet" , tableRows.length)
   })
   return (
-    <Table hover responsive>
+    <Table responsive  >
       <thead>
         <tr>
           <th>#</th>
-          <th>Event Name</th>
-          <th>Date</th>
-          <th>Location</th>
-          <th>Group</th>
+          <th>List of Events</th>
         </tr>
       </thead>
       {
         tableRows &&
         <tbody>
           {
-
           tableRows.map((row,i) => {
-
             return (
               <tr key={'row_'+i}>
                 <th scope="row">{i+1}</th>
-                <td>{row.event_name} </td>
-                <td>{row.event_time}</td>
-                <td>{row.event_url}</td>
-                <td>{row.group_city}</td>
+                <DetailComp row={row} />
           
               </tr>
             )
-
-            
           })
         }
         </tbody>
