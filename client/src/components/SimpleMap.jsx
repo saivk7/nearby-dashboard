@@ -43,7 +43,7 @@ export default function SimpleMap({events,center,forKey,range}){
     <div style={{ height: '40rem', width: '100%' }}>
       <GoogleMapReact
         key= {forKey}
-        bootstrapURLKeys={{ key: "" ,libraries:'places'}}
+        bootstrapURLKeys={{ key: "AIzaSyAzcYFYgM-9TLbbq4Ky-9UQ921GjQKMfhE" ,libraries:'places'}}
         center={{lat:center.lat,lng:center.lng}}
         defaultZoom={zoom}
         onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, {lat:center.lat,lng:center.lng},range* 1609)}
@@ -54,6 +54,8 @@ export default function SimpleMap({events,center,forKey,range}){
           events.map((event)=>{
             return (
               <Marker
+                title={event.event_name}
+                group={event.group_name}
                 key={'marker_'+event.lat+event.lon+ Math.random()}
                 lat={event.lat}
                 lng={event.lon}

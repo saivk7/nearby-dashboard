@@ -43,7 +43,7 @@ export const requestFunc = async (center,range,limit) =>{
     const maxLon= lon + radius/R*180/π / cos(lat*π/180);
 
 
-    const URL = 'http://159.65.39.80/data'
+    const URL = 'https://nearby-app.de/data'
     const sql = `select event_name,event_url,event_time,group_name,sum(case when response='yes' then 1 else 0 end) as response_yes, sum(case when response='no' then 1 else 0 end) as response_no,lon, lat  FROM meetup_table group by event_name,event_url, event_time,group_name,lat, lon having (lat BETWEEN ${minLat} AND ${maxLat}) AND (lon BETWEEN ${minLon} AND ${maxLon}) LIMIT ${limit_no}`
 
     console.log("the formed sql is ", sql, "range", radius)

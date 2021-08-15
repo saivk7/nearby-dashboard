@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Options from './Options';
 import SimpleMap from './SimpleMap';
 import TableComponent from './Table';
+import CardList from './CardList'
 
 import { requestFunc } from './helper';
 
@@ -26,7 +27,7 @@ const Main = () =>{
         console.log("main render")
         async function fetchLatLon(place) {
       
-            let url =  `http://159.65.39.80/google?placeId=${place}`;
+            let url =  `https://nearby-app.de/google?placeId=${place}`;
             let config = {};
             
             if(place){
@@ -63,7 +64,7 @@ const Main = () =>{
 
 
     return(
-
+        <React.Fragment>
 
         <div className="container"> 
             <div className="row input-row">
@@ -72,23 +73,25 @@ const Main = () =>{
                 </div>
 
             </div>
+        </div>
+        
+        <div className="container">
 
-            <div className="row table " >
-                
-
-                <div className="col col-12 col-sm-12 ">
+            <div className="row table" >
+                <div className="col  col-7">
                     <SimpleMap forKey={center.lat+ ' ' + center.lng + 'range'+range} events={events} center={center} range={range } />
                 </div>
-
-                
-                <br></br>
-                <hr></hr>
-                <div className="col col-12 col-sm-12"> 
-                        <TableComponent tableRows={events} />
+    
+                <div className="col  col-5" style={{ height: '40rem',overflow:'scroll'}}> 
+                        <CardList tableRows={events} />
                 </div>
             </div>
             
         </div>
+
+        
+            
+        </React.Fragment>
     )
 }
 

@@ -10,9 +10,9 @@ const DetailComp = ({row}) => {
         <CardBody className="card-body">
           <CardTitle className="title" > {new Date(Number.parseInt(row.event_time)).toLocaleDateString()} @ {new Date(Number.parseInt(row.event_time)).toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})} </CardTitle>
           <CardText className="card-text" >{row.event_name}</CardText>
-          <Button href={row.event_url} target="_blank"color="primary"  >RSVP here!</Button>
+          
         </CardBody>
-        
+        <CardFooter><Button href={row.event_url} target="_blank"color="primary"  >RSVP here!</Button></CardFooter>
     </Card>
   )
 }

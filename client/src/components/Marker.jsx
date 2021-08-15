@@ -19,8 +19,8 @@ const Marker = (props) => {
         />
         <div className="pulse" />
         <Popover placement="top" isOpen={popoverOpen} target="id" toggle={toggle}>
-            <PopoverHeader>Popover Title</PopoverHeader>
-            <PopoverBody>Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</PopoverBody>
+            <PopoverHeader>{props.title}</PopoverHeader>
+            <PopoverBody>{props.group}</PopoverBody>
         </Popover>
       </div>
     );
