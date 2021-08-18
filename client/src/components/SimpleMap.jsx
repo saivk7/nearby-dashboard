@@ -5,9 +5,11 @@ import SearchBox from "./SearchBox";
 import Marker from "./Marker";
 
 const range_zoom = {
+  5:12,
   10:11,
   25:10,
   50:9,
+  75:8,
   100:7.5,
   200:6.5
 }

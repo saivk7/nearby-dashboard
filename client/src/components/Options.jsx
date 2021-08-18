@@ -28,10 +28,11 @@ const Options = ({place,setPlace,results,setResults,range,setRange}) => {
         <Label for="rangeSelect" sm={3}>Range in Miles</Label>
         <Col sm={4}>
           <Input type="select" name="range" id="rangeSelect">
-            
+            <option>5</option>
             <option>10</option>
             <option>25</option>
             <option>50</option>
+            <option>75</option>
             <option>100</option>
             <option>200</option>
           </Input>
@@ -43,6 +44,7 @@ const Options = ({place,setPlace,results,setResults,range,setRange}) => {
           <Input type="select" name="resultsSelect" id="resultsSelect" >
             <option>5</option>
             <option>10</option>
+            <option>20</option>
             <option>25</option>
             <option>50</option>
           </Input>

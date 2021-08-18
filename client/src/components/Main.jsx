@@ -78,11 +78,11 @@ const Main = () =>{
         <div className="container">
 
             <div className="row table" >
-                <div className="col  col-7">
+                <div className="col-12 col-lg-7">
                     <SimpleMap forKey={center.lat+ ' ' + center.lng + 'range'+range} events={events} center={center} range={range } />
                 </div>
     
-                <div className="col  col-5" style={{ height: '40rem',overflow:'scroll'}}> 
+                <div className="col-12 col-lg-5" style={{ height: '40rem',overflow:'scroll'}}> 
                         <CardList tableRows={events} />
                 </div>
             </div>
