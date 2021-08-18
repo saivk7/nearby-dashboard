@@ -38,11 +38,17 @@ export default function GoogleMaps({place,setPlace}) {
 
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
-      loadScript(
-        'https://maps.googleapis.com/maps/api/js?key=AIzaSyAzcYFYgM-9TLbbq4Ky-9UQ921GjQKMfhE&libraries=places',
-        document.querySelector('head'),
-        'google-maps',
-      );
+      try{
+        loadScript(
+          'https://maps.googleapis.com/maps/api/js?key=AIzaSyAzcYFYgM-9TLbbq4Ky-9UQ921GjQKMfhE&libraries=places',
+          document.querySelector('head'),
+          'google-maps',
+        );
+
+      }catch(e){
+        console.log(e)
+      }
+      
     }
 
     loaded.current = true;

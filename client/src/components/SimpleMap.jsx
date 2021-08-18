@@ -14,8 +14,6 @@ const range_zoom = {
   200:6.5
 }
 
-const api = 'this '/* AIzaSyDbx9gdXfYNG7Fsjbl7fT1hEQhALgaBiJg */
-
 export default function SimpleMap({events,center,forKey,range}){
   //default zoom = 11
 
@@ -48,7 +46,15 @@ export default function SimpleMap({events,center,forKey,range}){
         bootstrapURLKeys={{ key: "AIzaSyAzcYFYgM-9TLbbq4Ky-9UQ921GjQKMfhE" ,libraries:'places'}}
         center={{lat:center.lat,lng:center.lng}}
         defaultZoom={zoom}
-        onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, {lat:center.lat,lng:center.lng},range* 1609)}
+        onGoogleApiLoaded={({ map, maps }) => {
+         
+          try{
+            return apiIsLoaded(map, maps, {lat:center.lat,lng:center.lng},range* 1609)
+          }
+          catch(e){
+            console.log(e)
+          }
+        }}
 
       >
 
