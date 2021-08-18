@@ -8,7 +8,7 @@ const DetailComp = ({row}) => {
 
   return(
     <Card  >
-        <CardHeader tag="h7" style={{ color:"white", backgroundColor: '#3f80d4', borderColor: '#99c2f5' }}>{row.event_name}</CardHeader>
+        <CardHeader tag="h6" style={{ color:"white", backgroundColor: '#3f80d4', borderColor: '#99c2f5' }}>{row.event_name}</CardHeader>
         <CardBody className="card-body">
           <CardTitle className="title" > {new Date(Number.parseInt(row.event_time)).toLocaleDateString()} @ {new Date(Number.parseInt(row.event_time)).toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})} </CardTitle>
           <CardText className="card-text" >{row.group_name}</CardText>
