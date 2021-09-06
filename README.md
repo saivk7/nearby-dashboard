@@ -12,4 +12,4 @@ Events are updated live on Kafka-Spark Streaming server. Checkout the code and a
 
 ## Demo 
 
-![nearby-app Animated GIF demo](./demo.gif)
+![nearby-app Animated GIF demo](./client/demo.gif)
