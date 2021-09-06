@@ -4,11 +4,11 @@ import React, { useEffect } from 'react';
 import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText } from 'reactstrap';
 
 //for each event row from the events database, we render a card
-const DetailComp = ({row}) => {
+const DetailComp = ({row,index}) => {
 
   return(
     <Card  >
-        <CardHeader tag="h6" style={{ color:"white", backgroundColor: '#3f80d4', borderColor: '#99c2f5' }}>{row.event_name}</CardHeader>
+        <CardHeader tag="h6" style={{ color:"white", backgroundColor: '#3f80d4', borderColor: '#99c2f5' }}>{index+1 + `. `}{row.event_name}</CardHeader>
         <CardBody className="card-body">
           <CardTitle className="title" > {new Date(Number.parseInt(row.event_time)).toLocaleDateString()} @ {new Date(Number.parseInt(row.event_time)).toLocaleTimeString([],{hour: '2-digit', minute:'2-digit'})} </CardTitle>
           <CardText className="card-text" >{row.group_name}</CardText>
@@ -38,7 +38,7 @@ const CardList = ({ tableRows }) => {
             {tableRows &&
                 tableRows.map((row,i) => {
                     return (
-                        <DetailComp row={row} key={`card_${row.lat} _${row.lon}`} />
+                        <DetailComp row={row} index={i} key={`card_${row.lat} _${row.lon}_ ${i}`} />
                     )
                 })
             }

@@ -12,7 +12,7 @@ const Main = () =>{
 
     const [events,SetEvents] = useState([])
     const [place, setPlace] = useState("ChIJOwg_06VPwokRYv534QaPC8g");
-    const [range,setRange] = useState(10)
+    const [range,setRange] = useState(5)
     const [results,setResults] = useState(5)
 
     const [center,setCenter] = useState({
@@ -49,7 +49,8 @@ const Main = () =>{
                 console.log("center [after] is " ,center, "range", range, "results" ,results)
                 console.log("calling database for results rows")
                 const tableRows = await requestFunc(center,range,results) //replace with range after wards
-                SetEvents(tableRows)
+                
+                SetEvents(()=>tableRows)
               }
             }catch(e){
               console.log("error fetching lat lon", e.message)

@@ -12,9 +12,13 @@ const Header = () =>{
             <div className="container">
                 <NavbarBrand href="/">Nearby</NavbarBrand>
                 <Nav className="mr-auto" navbar>
-                    <NavItem>
-                    <NavLink href="https://github.com/saivk7/nearby-dashboard">GitHub</NavLink>
+                <NavItem>
+                    <NavLink href="https://github.com/saivk7/kafka-spark-project" target="_blank">Github (Kafka-Spark Backend)</NavLink>
                     </NavItem>
+                    <NavItem>
+                    <NavLink href="https://github.com/saivk7/nearby-dashboard" target="_blank">Github (Dashboard)</NavLink>
+                    </NavItem>
+                    
                 </Nav>
             </div>
             </Navbar>

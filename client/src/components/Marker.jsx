@@ -3,7 +3,7 @@ import './Marker.css';
 import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
 const Marker = (props) => {
-    const { color, name, id } = props;
+    const { color, name, index } = props;
 
     const [popoverOpen, setPopoverOpen] = useState(false);
 
@@ -19,7 +19,7 @@ const Marker = (props) => {
         />
         <div className="pulse" />
         <Popover placement="top" isOpen={popoverOpen} target="id" toggle={toggle}>
-            <PopoverHeader>{props.title}</PopoverHeader>
+            <PopoverHeader>{`${props.index +1}. `} {props.title}</PopoverHeader>
             <PopoverBody>{props.group}</PopoverBody>
         </Popover>
       </div>

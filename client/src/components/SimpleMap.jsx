@@ -59,9 +59,10 @@ export default function SimpleMap({events,center,forKey,range}){
       >
 
         {
-          events.map((event)=>{
+          events.map((event, i)=>{
             return (
               <Marker
+                index={i}
                 title={event.event_name}
                 group={event.group_name}
                 key={'marker_'+event.lat+event.lon+ Math.random()}
